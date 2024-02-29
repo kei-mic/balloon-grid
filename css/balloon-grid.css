@@ -1,0 +1,274 @@
+/* ------ normalizing ------  */
+* { 
+    box-sizing: border-box; 
+}
+img { 
+    max-width: 100%; 
+    vertical-align: middle; 
+    border: 0; 
+}
+
+/* ------ root styles ------ */
+:root {
+    --background-color: #305A6A;
+    --nav-background-color: #FEE3C5;
+    --content-background-color: #EEE;
+    --primary-color: #63474D;
+    --secondary-color: #AA767C;
+}
+
+/* ------ for coding ------ */
+/* body {
+    border: 3px dashed red;
+    padding: 4px;
+    margin: 4px;
+}
+
+header, main, aside, footer {
+    border: 3px dashed orange;
+    padding: 4px;
+    margin: 4px;
+}
+nav, article {
+    border: 3px dashed yellow;
+    padding: 4px;
+    margin: 4px;
+} */
+
+/* ------ page styles ------ */
+body {
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    line-height: 1.5rem;
+}
+main, aside, footer {
+    background-color: var(--content-background-color);
+    margin: 8px auto;
+    padding: 16px;
+    border-radius: 10px;
+}
+.page-container {
+    max-width: 99%;
+    margin: 0 auto;
+}
+
+.hero {
+    background-image: 
+        linear-gradient(#00000060, #00000060),
+        url(../images/balloon-header.png);
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    color: #fff;
+    padding: 24px;
+    text-align: center;
+    border-radius: 50px 50px 0 0;
+    line-height: 2rem;
+}
+
+/* ------ typography ----- */
+h3 {
+    border-bottom: 2px solid var(--secondary-color);
+}
+a:link {
+    color: var(--background-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+a:hover, a:focus {
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+a:visited {
+    color: var(--secondary-color);
+}
+
+/* ------ nav ------ */
+
+/* hides the nav on default */
+nav {    
+    display: none;
+    background-color: var(--nav-background-color);
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    max-height: 0;
+    transition: all 1s ease;
+    padding: 8px;
+}
+
+/* changes the list styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* how the links are displayed */
+nav li a {
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+    text-transform: uppercase;
+}
+
+nav a:link, nav a:visited {
+    color: var(--background-color);
+    font-weight: 600;
+}
+
+/* hides the checkbox */
+#nav-checkbox {
+    position: fixed;
+    clip: rect(0,0,0,0);
+}
+
+/* how the nav is displayed when open */
+#nav-checkbox:checked ~ nav {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    max-height: 30em;
+    margin: 4px auto;
+}
+
+/* space  */
+label {
+    /* padding: 4px; */
+    fill: var(--background-color);
+}
+
+/* hides the menu button */
+#nav-checkbox:checked ~ .nav {
+    display: none;
+}
+
+/* closed nav styling */
+div .nav {
+    background-color: var(--nav-background-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 4px auto;
+    padding-top: 6px;
+    padding-right: 8px;
+    border-radius: 0 0 10px 10px;
+}
+
+/* ------ map ------ */
+.map {
+    display: flex;
+    justify-content: center;
+}
+iframe {
+    width: 400px;
+    height: 300px;
+    border: none;
+}
+
+/* ------ aside ------ */
+aside {
+    display: flex;
+    flex-direction: column;
+}
+aside ul {
+    list-style-image: url('../images/balloon-icon.png');
+    margin: 0 0 1.5rem 3rem;
+}
+aside li {
+    margin: 2px 0;
+}
+aside img {
+    max-height: 500px;
+    margin: 0 auto;
+}
+
+/* ------ footer ------ */
+footer {
+    text-align: center;
+    font-size: small;
+}
+
+/* ------ change the nav to desktop mode to go across the screen ------ */
+@media (min-width: 750px) {
+    .page-container {
+        max-width: 85%;
+    }
+    .hero {
+       display: flex;
+       flex-direction: column; 
+       align-items: flex-start;
+       justify-content: center;
+    }
+    div .nav {
+        display: none;
+    }
+    nav label {
+        display: none;
+    }
+    nav {
+        display: block;
+        position: static;
+        height: auto;
+        transition: none;
+        max-height: fit-content;
+        margin: 4px 0;
+    }
+    nav ul{
+        display: flex;
+        justify-content: space-around;
+    }
+    nav li a {
+        padding: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    iframe {
+        width: 600px;
+        height: 450px;
+    }
+    footer ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+
+/* ------ figuring out page layout with grid - desktop ------ */
+@media (min-width: 950px) {
+    .page-container {
+        display: grid;
+        grid-template-areas: 
+            "header header header"
+            "nav nav nav"
+            "aside main main"
+            "footer footer footer";
+        max-width: 75%;
+    }
+    header {
+        grid-area: header;
+    }
+    nav {
+        grid-area: nav;
+    }
+    main {
+        grid-area: main;
+        border-radius: 0 10px 10px 0;
+    }
+    aside {
+        grid-area: aside;
+        border-radius: 10px 0 0 10px;
+        margin-right: 8px;
+    }
+    iframe{
+        width: 800px;
+        height: 600px;
+    }
+    footer {
+        grid-area: footer;
+        width: 100%;
+    }
+}
